@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript" src="chrome://csspush/content/common.js"/>
+	<script type="application/x-javascript" src="chrome://csspush/content/csspush.js" />
+	
+	<commandset id="mainCommandSet">
+		<command id="cmd_pdtSaveCommit" oncommand="Firebug.CSSPushModule.onSaveCommit(Firebug.currentContext)"/>
+		<command id="cmd_pdtResetChanges" oncommand="Firebug.CSSPushModule.resetChanges(Firebug.currentContext)"/>
+	</commandset>
+	
+	<hbox id="fbCSSButtons">
+		<toolbarbutton id="pdtSaveCommit2"
+			insertafter="fbToggleCSSEditing"
+			tooltiptext="Save and commit all CSS changes to server"
+			command="cmd_pdtSaveCommit">
+			<image class="toolbarbutton-icon" src="chrome://csspush/content/images/commitSaveButton.png" width="16" height="16"></image>
+		</toolbarbutton>
+	</hbox>
+		
+	<panelBarArrowscrollbox id="fbPanelBar2-Arrowscrollbox">
+		<toolbarbutton id="pdtSaveCommit"
+			insertafter="fbPanelBar2-panelTabs"
+			tooltiptext="Commit CSS changes to server"
+			command="cmd_pdtSaveCommit">
+			<image class="toolbarbutton-icon" src="chrome://csspush/content/images/commitSaveButton.png" width="16" height="16"></image>
+		</toolbarbutton>
+		
+		<toolbarbutton id="pdtResetChanges"
+			insertafter="fbPanelBar2-panelTabs"
+			tooltiptext="Clear CSS changes queue (Refresh page to reload stylesheets)"
+			command="cmd_pdtResetChanges">
+			<image class="toolbarbutton-icon" src="chrome://csspush/content/images/resetButton.png" width="16" height="16"></image>
+		</toolbarbutton>
+	</panelBarArrowscrollbox>
+	
+</overlay>

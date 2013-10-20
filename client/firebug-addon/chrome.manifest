@@ -1,0 +1,4 @@
+content csspush chrome/content/ xpcnativewrappers=no
+
+overlay	chrome://browser/content/browser.xul		chrome://csspush/content/csspush.xul
+overlay chrome://firebug/content/firebugOverlay.xul chrome://csspush/content/csspush.xul

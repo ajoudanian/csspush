@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+ 
+<prefwindow id="csspush-prefs"
+     title="CSSPush Options"
+     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<prefpane id="csspush-server-pane" label="Server Settings" image="chrome://csspush/content/images/server.png">
+  <preferences>
+    <preference id="pref_prepdomain" name="extensions.firebug.CSSPush.prependDomain" type="bool" />
+    <preference id="pref_endpoint" name="extensions.firebug.CSSPush.remoteEndpoint" type="string" />
+  </preferences>
+ 
+  <hbox align="center" valign="top">
+    <label width="110" style="text-align: right;" control="chk_prepdomain" value="Prepend Domain: "/>
+    <vbox>
+      <checkbox preference="pref_prepdomain" id="chk_prepdomain" /> 
+      <i style="font-size: 10px;">If checked, current domain (from active tab while clicking CSS `Save` button) will be prepended to endpoint.</i>
+    </vbox>
+  </hbox>
+  
+  <hbox align="center" valign="top">
+    <label width="110" style="text-align: right;" control="txt_endpoint" value="Endpoint URL: "/>
+    <vbox>
+      <textbox preference="pref_endpoint" id="txt_endpoint" maxlength="250" />
+      <i style="font-size: 10px;">
+      If above options is checked include trailing / slash (e.g. /csspush/csspush.server.php).
+      </i>
+      <i style="font-size: 10px;">
+      If not, include domain name (e.g. http://example.com/csspush/csspush.server.php)
+      </i>
+    </vbox>
+  </hbox>
+</prefpane> 
+
+<prefpane id="csspush-credetials-pane" label="Credential Settings" image="chrome://csspush/content/images/credentials.png">
+  <preferences>
+    <preference id="pref_username" name="extensions.firebug.CSSPush.username" type="string" />
+    <preference id="pref_key" name="extensions.firebug.CSSPush.key" type="string" />
+  </preferences>
+ 
+  <hbox align="center">
+    <label width="110" style="text-align: right;" control="txt_username" value="Username: "/>
+    <textbox preference="pref_username" id="txt_username" maxlength="50" />
+  </hbox>
+  <hbox align="center">
+    <label width="110" style="text-align: right;" control="txt_key" value="Key: "/>
+    <textbox preference="pref_key" type="password" id="txt_key" maxlength="50" />
+  </hbox>
+</prefpane>
+ 
+</prefwindow>

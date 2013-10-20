@@ -35,7 +35,7 @@
 $manipulations = array(
 
   // cross-browser and vendor prefix generations
-  '(-[a-zA-Z]*-)?(border-radius|box-shadow|text-shadow)\s*:([^;]*);' => function($matches) {
+  '/(-[a-zA-Z]*-)?(border-radius|box-shadow|text-shadow)\s*:([^;]*);/im' => function($matches) {
     $value = clean_property_value($matches[3]);
     return trim('
       -ms-'.$matches[2].': '.$value.';
@@ -45,7 +45,7 @@ $manipulations = array(
       '.$matches[2].': '.$value.';
     ');
   },
-  '(-[a-zA-Z]*-)?opacity\s*:([^;]*);' => function($matches) {
+  '/(-[a-zA-Z]*-)?opacity\s*:([^;]*);/im' => function($matches) {
     $value = clean_property_value($matches[2]);
     return trim('
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity='.(floatval($value)*100).')";
@@ -59,6 +59,6 @@ $manipulations = array(
 );
 
 function clean_property_value($value) {
-  $value = preg_replace('\s*', ' ', $value);
+  $value = preg_replace('/\s+/im', ' ', $value);
   return trim($value);
 }

@@ -65,7 +65,7 @@ $config = array(
        * each user has a secret key and allowed paths (in regular expressions)
        */
       'admin' => array(
-        'key' => '12345'
+        'key' => '12345',
         
         // NOTE that below configurations will override global 'path' configuration we defined earlier above
         'deny' => array(),

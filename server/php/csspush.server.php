@@ -82,6 +82,8 @@
     $output['error'] = 'You should provide a username/key pair to use this CSSPush server.';
   }
 
+  echo(json_encode($output));
+  exit;
 
 function check_credentials($username, $key)
 {
@@ -157,9 +159,9 @@ function is_changeable($stylesheet)
         $rules = array_merge($config['paths']['allow'], $config['users'][$_POST['username']]['allow']);
         
         foreach ($rules as $rule) {
-          // append case-insensitive flag if its not present in rule
+          // append case-insensitive modifier if its not present in rule
           if($rule{0} !== '/') {
-            $rule = '/'.$rule.'/i';
+            $rule = '/'.$rule.'/im';
           }
           
           $result = preg_match($rule, $stylesheet['url']);
@@ -190,7 +192,7 @@ function is_changeable($stylesheet)
 function get_physical_path($stylesheet)
 {
   $parsed = parse_url($stylesheet['url']);
-  $path = '/'.trim($_SERVER['DOCUMENT_ROOT'], '/').'/'.trim($parsed['path'], '/').'/';
+  $path = rtrim(str_replace("\\", '/', $_SERVER['DOCUMENT_ROOT']), '/').'/'.ltrim($parsed['path'], '/');
   
   if(function_exists('override_get_physical_path')) {
     $override = override_get_physical_path($path, $stylesheet);
@@ -213,11 +215,11 @@ function manipulate_content($stylesheet)
   
   // correct missing ; preceding } so regular expression replaces
   // will not break
-  $content = preg_replace_callback('/;([^;{]*)?}/mig', function($matches) {
+  $content = preg_replace_callback('/;([^;{]*)?}/im', function($matches) {
     if(trim($matches[1]) === '') {
       return '; }';
     } else {
-      return ';' . $matches[1] . '; }'
+      return ';' . $matches[1] . '; }';
     }
   }, $content);
   
